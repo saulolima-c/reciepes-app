@@ -166,6 +166,10 @@ p {
   width: 190px;
 }
 
+.carrousel::-webkit-scrollbar {
+  display: none;
+}
+
 .container-carrousel {
   align-items: center;
   display: flex;
