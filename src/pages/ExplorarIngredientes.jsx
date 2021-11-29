@@ -47,6 +47,7 @@ function ExplorarIngredientes() {
             data-testid={ `${index}-ingredient-card` }
           >
             <button
+              data-testid={ `${index}-btn-ingredient` }
               key={ index }
               type="button"
               onClick={ () => handleClick(item) }

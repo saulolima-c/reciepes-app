@@ -28,7 +28,7 @@ describe('Testes do componente "Details"', () => {
   test('verifica se as informações estão na tela', async () => {
     renderPath('/comidas/52772');
     expect(getRecipeByIdMock).toBeCalled();
-    expect(getRecomendationsMock).toBeCalled();
+    waitFor(() => expect(getRecomendationsMock).toBeCalled());
     expect(await screen.findByTestId('0-ingredient-name-and-measure'))
       .toBeInTheDocument();
     expect(await screen.findByTestId('video')).toBeInTheDocument();
@@ -71,17 +71,15 @@ describe('Verifica os as opções de iniciar e continuar receita', () => {
   test('opção de iniciar receita', async () => {
     localStorage.setItem('inProgressRecipes', JSON.stringify({ meals: {} }));
     const { history } = renderPath('/comidas/52771');
-    expect(await screen.getByText('Iniciar Receita')).toBeInTheDocument();
-    userEvent.click(await screen.getByText('Iniciar Receita'));
+    userEvent.click(await screen.findByText('Iniciar Receita'));
     expect(history.location.pathname).toBe('/comidas/52771/in-progress');
   });
-  test('opção de iniciar receita', async () => {
+  test('opção de continuar receita', async () => {
     localStorage.setItem('inProgressRecipes', JSON.stringify({
       meals: { 52771: ['strIngredient3'] } }));
     const { history } = renderPath('/comidas/52771');
-
-    expect(await screen.getByText('Continuar Receita')).toBeInTheDocument();
-    userEvent.click(await screen.getByText('Continuar Receita'));
+    // userEvent.click(btnContinue);
+    userEvent.click(await screen.findByTestId('start-recipe-btn'));
     expect(history.location.pathname).toBe('/comidas/52771/in-progress');
   });
 });

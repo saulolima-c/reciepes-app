@@ -63,13 +63,6 @@ function InProgress() {
                   name={ key }
                   id={ key }
                 />
-                <label
-                  style={ { textDecoration: recipeSteps[key] && 'line-through' } }
-                  htmlFor={ key }
-                >
-                  { `${recipe[key]} - ${recipe[`strMeasure${indice + 1}`]}`}
-
-                </label>
               </div>
             ))}
           </div>

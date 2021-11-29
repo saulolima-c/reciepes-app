@@ -40,7 +40,7 @@ const ingredientsData = [
   },
   {
     idIngredient: '12',
-    strIngredient: 'Baby Plum Tomatoes',
+    strIngredient: 'Baby Plum',
   },
 ];
 
@@ -72,12 +72,12 @@ describe('testa funcionamento da pagina "explorar/comidas/ingredientes"', () => 
   it('verifica se renderiza os ingredientes', async () => {
     renderPath('/explorar/comidas/ingredientes');
     expect(await screen.findByText(/chicken/i)).toBeInTheDocument();
-    expect(await screen.findByText(/baby plum tomatoes/i)).toBeInTheDocument();
+    expect(await screen.findByText(/baby plum/i)).toBeInTheDocument();
   });
   it('verifica se ao clicar em algum ingrediente redireciona para tela'
     + ' principal com as receitas filtradas pelo ingrediente clicado', async () => {
     const { history } = renderPath('/explorar/comidas/ingredientes');
-    const chickenBtn = await screen.findByText(/chicken/i);
+    const chickenBtn = await screen.findByTestId('0-btn-ingredient');
     userEvent.click(chickenBtn);
 
     await waitFor(async () => {

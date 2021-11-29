@@ -93,6 +93,11 @@ const mockRecipes = {
       strMeal: 'Corba',
       strMealThumb: 'https://www.themealdb.com/images/media/meals/58oia61564916529.jpg',
     },
+    {
+      idMeal: '52977',
+      strMeal: 'Corba',
+      strMealThumb: 'https://www.themealdb.com/images/media/meals/58oia61564916529.jpg',
+    },
   ],
 };
 
