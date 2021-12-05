@@ -101,6 +101,8 @@ describe('Verifica funcionamento dos botões de filtro por'
     expect(await screen.findByText('GG')).toBeInTheDocument();
     userEvent.click(await screen.findByText('Cocktail'));
     expect(await screen.findByText(/155 Belmont/i)).toBeInTheDocument();
+    userEvent.click(await screen.findByText('All'));
+    expect(await screen.findByText(/GG/i)).toBeInTheDocument();
   });
 });
 
@@ -113,12 +115,20 @@ describe('Verifica funcionamento dos filtros do header', () => {
       .mockImplementation(() => Promise.resolve(dataMock));
     jest.spyOn(ApiFuncs, 'categoryRecipesApi')
       .mockImplementation(() => Promise.resolve(categoryApi));
+    jest.spyOn(ApiFuncs, 'recipesAPI')
+      .mockImplementation(({ search, type }, history) => {
+        if (search === 'ice' && type === 'Ingrediente' && history === '/bebidas') {
+          return Promise.resolve(searchIngredientIce);
+        } if (search === 'vodka' && type === 'Nome' && history === '/bebidas') {
+          return Promise.resolve(searchNomeVodka);
+        } if (search === 'a' && type === 'Primeira letra' && history === '/bebidas') {
+          return Promise.resolve(searchFirstLetter);
+        }
+        return Promise.resolve({ drinks: null });
+      });
   });
-
   it('verifica se ao pesquisar por ingrediente,'
     + 'renderiza receitas somente o ingrediente pesquisado', async () => {
-    jest.spyOn(ApiFuncs, 'recipesAPI')
-      .mockImplementation(() => Promise.resolve(searchIngredientIce));
     renderPath('/bebidas');
     openSearchBar();
     const inputSearch = await screen.findByTestId(SEARCH_INPUT);
@@ -132,11 +142,8 @@ describe('Verifica funcionamento dos filtros do header', () => {
     userEvent.click(buttonSearch);
     expect(await screen.findByText('A Piece of Ass')).toBeInTheDocument();
   });
-
   it('verifica se ao pesquisar por nome,'
   + 'renderiza apenas receitas com o nome pesquisado', async () => {
-    jest.spyOn(ApiFuncs, 'recipesAPI')
-      .mockImplementation(() => Promise.resolve(searchNomeVodka));
     renderPath('/bebidas');
     openSearchBar();
     userEvent.type(await screen.findByTestId(SEARCH_INPUT), 'vodka');
@@ -144,11 +151,8 @@ describe('Verifica funcionamento dos filtros do header', () => {
     userEvent.click(await screen.findByTestId(EXEC_SEARCH_BTN));
     expect(await screen.findByText('Long vodka')).toBeInTheDocument();
   });
-
   it('verifica se ao pesquisar pela primeira letra'
   + 'renderiza apenas receitas filtrado pela primeira letrar', async () => {
-    jest.spyOn(ApiFuncs, 'recipesAPI')
-      .mockImplementation(() => Promise.resolve(searchFirstLetter));
     renderPath('/bebidas');
     openSearchBar();
     userEvent.type(await screen.findByTestId(SEARCH_INPUT), 'a');

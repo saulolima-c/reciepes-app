@@ -14,6 +14,7 @@ const getRecomendationsMock = jest.spyOn(APIfuncs, 'getRecomendations')
   .mockImplementation(() => Promise.resolve(DrinksRecomendation));
 
 let clipboardData = '';
+const ROTA_COMIDA = '/comidas/52772';
 const mockClipboard = {
   writeText: jest.fn(
     (data) => { clipboardData = data; },
@@ -26,7 +27,7 @@ global.navigator.clipboard = mockClipboard;
 
 describe('Testes do componente "Details"', () => {
   test('verifica se as informações estão na tela', async () => {
-    renderPath('/comidas/52772');
+    renderPath(ROTA_COMIDA);
     expect(getRecipeByIdMock).toBeCalled();
     waitFor(() => expect(getRecomendationsMock).toBeCalled());
     expect(await screen.findByTestId('0-ingredient-name-and-measure'))
@@ -58,7 +59,7 @@ describe('Testes do componente "Details"', () => {
   });
 
   test('verifica se as receitas recomendadas estão corretas', async () => {
-    renderPath('/comidas/52772');
+    renderPath(ROTA_COMIDA);
     DrinksRecomendation.forEach(async (item) => {
       expect(await screen.findByText(item.strAlcoholic)).toBeInTheDocument();
       expect(await screen.findByAltText(item.strDrink)).toBeInTheDocument();
@@ -78,7 +79,6 @@ describe('Verifica os as opções de iniciar e continuar receita', () => {
     localStorage.setItem('inProgressRecipes', JSON.stringify({
       meals: { 52771: ['strIngredient3'] } }));
     const { history } = renderPath('/comidas/52771');
-    // userEvent.click(btnContinue);
     userEvent.click(await screen.findByTestId('start-recipe-btn'));
     expect(history.location.pathname).toBe('/comidas/52771/in-progress');
   });
