@@ -191,7 +191,7 @@ Testar a aplicação foi muito importante devido ao tamanho do projeto ser relat
 
 ## Aplicação funcionando
 
-![Aplicação funcionando](https://raw.githubusercontent.com/malves224/app-recipes/app-matheus-alves/app-funcionando.gif)
+![Aplicação funcionando](https://raw.githubusercontent.com/malves224/app-recipes/main/app-funcionando.gif)
 
 ### Rode a aplicação em sua maquina
 Entenda melhor como a aplicação funciona rodando na sua maquina,
