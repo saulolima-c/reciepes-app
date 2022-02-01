@@ -191,9 +191,9 @@ Testar a aplicação foi muito importante devido ao tamanho do projeto ser relat
 
 ## Aplicação funcionando
 
-
-Acesse pelo link >> https://app-recipes-six.vercel.app/
 ![Aplicação funcionando](https://raw.githubusercontent.com/malves224/app-recipes/main/app-funcionando.gif)
+
+[Acesse a aplicação](https://app-recipes-six.vercel.app/)
 
 ### Rode a aplicação em sua maquina
 Entenda melhor como a aplicação funciona rodando na sua maquina,
