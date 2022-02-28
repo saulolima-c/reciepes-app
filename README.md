@@ -19,7 +19,7 @@ O projeto inteiro foi desenvolvido em grupo, decisões como quais tecnologias ut
 ### Integrantes da equipe
 - [Cristhyane Araldi](https://github.com/CristhyaneAraldi)
 - [Gabriel Ferreira](https://github.com/Gabrielferreirasl)
-- Matheus Alves (https://github.com/malves224)
+- [Matheus Alves](https://github.com/malves224)
 - [Saulo Lima](https://github.com/saulolima-c)
 - [Victor Hugo Souza](https://github.com/victoraster2010)
 
